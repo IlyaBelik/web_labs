@@ -1,0 +1,65 @@
+p, ul, ol {
+    font-size: large;
+    margin: 1.556em 0;
+}
+body {
+    font: large/1.556 "Linux Libertine", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
+    word-spacing: 0.1em;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-bottom: 2em;
+
+}
+
+.a1,  {
+    color: firebrick;
+    border-bottom: 1px dotted;
+}
+h1 {
+    font-size: 266.7%;
+    line-height: 1.1;
+    text-align: center;
+    width: 100%;
+    margin: 1.49em 0;
+}
+
+
+#p1 {
+	text-align: center;
+	
+}
+a:link {
+    color: FireBrick;
+    border-bottom: 1px dotted;
+}
+
+#video {
+	float: right;
+	padding-top: 20px;
+	margin:0 0 1.75em 1.75em;
+	
+}	
+
+#rel, #two, #forms {
+	float:left;
+	margin:0 1.75em 1.75em 0;
+}	
+#mwa, #gears  {
+	float:right;
+	margin:0 1.75em 1.75em 0;
+}
+.div1 h4 {
+
+    margin: 0;
+    padding: 4px;
+    background: black;
+    color: white;
+    font-size: large;
+}
+.div1 {
+    border: 1px solid;
+}
+input {
+    align-self: center;
+}
+
