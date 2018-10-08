@@ -36,7 +36,7 @@ ul.submenu {
     position: absolute;
     width: 120px;
     top: 35px;
-    left: 0;
+    left: -10px;
     background-color: white;
     border: 1px solid black;
 }
@@ -61,7 +61,7 @@ ul.menu > li:hover > ul.submenu {
     float: right;
 }
 .header2 {
-    padding: 20% 45%;
+    padding: 20% 46%;
     position: static;
     
 }
@@ -75,13 +75,14 @@ ul.menu > li:hover > ul.submenu {
     justify-content: space-around;
     margin-top: -250px;
     font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 20px;
 }
 .column1, .column2, .column3, .column4 {
     transition: all 300ms linear 0ms;
-    width: 200px;
+    width: 206px;
     height: 400px;
     background: #F2F2F2;
-    outline: 2px solid #000; /* Чёрная рамка */
+    outline: 1px solid #000; /* Чёрная рамка */
     border: 3px solid #fff; /* Белая рамка */
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 

@@ -36,7 +36,7 @@ ul.submenu {
     position: absolute;
     width: 120px;
     top: 35px;
-    left: 0;
+    left: -10px;
     background-color: white;
     border: 1px solid black;
 }
@@ -52,24 +52,21 @@ ul.submenu > li > a {
 }
 ul.submenu > li > a:hover {
     text-decoration: underline;
+    background-color: gray;
 }
 ul.menu > li:hover > ul.submenu {
     display: block;
+
 }
 #bio {
 	padding-top: 50px;
-	font-family: "Andale Mono"
+	font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 20px;
 }
 
-/* .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
-} */
+footer{
+    position: static;
+}
 #logo {
 	float: right;
 }
