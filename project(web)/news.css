@@ -1,10 +1,15 @@
 
-header {
-    font: 16px 'Times News Roman';
+/*для discription*/
+.news-main .item .txt h4 {
     margin: 0;
-    padding: 0;
-    position: fixed;
+    color: blue;
 }
+.img-news{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
 ul {
     display: block;
     margin: 0;
@@ -29,7 +34,8 @@ ul.menu > li > a {
     text-decoration: none;
 }
 ul.menu > li > a:hover {
-    background-color: gray;
+    transition: background 300ms linear;
+    background: gray;
 }
 ul.submenu {
     display: none;
@@ -65,12 +71,8 @@ ul.menu > li:hover > ul.submenu {
     position: static;
     
 }
-/*h1 {
-    margin: 50%
-}*/
 
 .newsblock {
-   /* position: absolute;*/
     display: flex;
     justify-content: space-around;
     margin-top: -250px;
@@ -82,40 +84,48 @@ ul.menu > li:hover > ul.submenu {
     width: 206px;
     height: 400px;
     background: #F2F2F2;
-    outline: 1px solid #000; /* Чёрная рамка */
-    border: 3px solid #fff; /* Белая рамка */
+    outline: 1px solid #000;
+    border: 3px solid #fff; 
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 
     
 }
-.column1:hover {
-   transform: rotate(0deg) scale(1.1,1.1) ;
+/*#column1:hover {
+   transform: scale(1.1,1.1) ;
    box-shadow: 5px 5px 0px #A5A5A5;
    z-index: 999;
-   transition: transform 300ms linear 0ms, 
-   box-shadow 300ms linear 0ms, z-index 300ms linear 0ms;
+   transition: transform 300ms linear 0ms;
 }
-.column2:hover {
-   transform: rotate(0deg) scale(1.1,1.1) ;
+#column2:hover {
+   transform: scale(1.1,1.1) ;
    box-shadow: 5px 5px 0px #A5A5A5;
    z-index: 999;
-   transition: transform 300ms linear 0ms, 
-   box-shadow 300ms linear 0ms, z-index 300ms linear 0ms;
+   transition: transform 300ms linear 0ms;
 }
-.column3:hover {
-   transform: rotate(0deg) scale(1.1,1.1) ;
+#column3:hover {
+   transform: scale(1.1,1.1) ;
    box-shadow: 5px 5px 0px #A5A5A5;
    z-index: 999;
-   transition: transform 300ms linear 0ms, 
-   box-shadow 300ms linear 0ms, z-index 300ms linear 0ms;
+   transition: transform 300ms linear 0ms;
+   transform: trвы 
 }
 .column4:hover {
-   transform: rotate(0deg) scale(1.1,1.1) ;
+   transform: scale(1.1,1.1) ;
    box-shadow: 5px 5px 0px #A5A5A5;
    z-index: 999;
-   transition: transform 300ms linear 0ms, 
-   box-shadow 300ms linear 0ms, z-index 300ms linear 0ms;
+   transition: transform 300ms linear 0ms;
 }
-a {
+*/a {
     text-decoration: none;
 }
+*{
+  transition: all 0.2s ease-in-out;
+  font-family: Arial;
+}
+/*html,body{
+  height: 100%;
+  width: 100%;
+  padding:0;
+  margin:0 auto;
+}
+*/
