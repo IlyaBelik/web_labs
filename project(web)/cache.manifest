@@ -1,0 +1,19 @@
+CACHE MANIFEST
+
+CACHE:
+index.html
+
+error.html
+admin.html
+
+css/style.css
+
+
+
+FALLBACK:
+/ /error.html
+
+
+NETWORK:
+#*
+
