@@ -1,53 +1,119 @@
-const feedback = (name, text, date, time) => ` 
+var useLocalStorage = false;
+
+const feedbackAdd = (name, text, time) => ` 
     <div class="card-body">
 		<p class="card-text">${text}</p>
-		<div class="row">
-		<div class="date_of_post_in_fans col-md-3">${name}</div><div class="nickname_in_fans col-md-3 col-md-offset">${date}, ${time}</div>
+    <div class="row">
+		<div class="date_of_post_in_fans col-md-3">${name}</div><p>${time}</p>
 	</div>
+  </div>
 `
 
-function isOnline() {
-    return window.navigator.onLine;
+class Feedback{
+	constructor(name, feedback, date){
+		this.name = name;
+		this.feedback = feedback;
+		this.date = date;
+	}
 }
 
-var list_commit = [];
+function addToStorage(feedback){
+  if(useLocalStorage){
+      var feedbackItem = localStorage.getItem('feedbacks');
+      if (feedbackItem !== null) {
+          feedbacks = JSON.parse(feedbackItem);
+        }
+    feedbacks.push(feedback);
+    localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+    return false;
+  }
+  else{
+    var openDB = indexedDB.open("feedback", 1);
 
-function addElement(){
-	if (document.getElementById('inp').value.length == 0){ 
-		alert("Error") 
-		return;
-	}
+    openDB.onerror = function(event){
+      alert("Error when adding feedback to DataBase")
+    };
+    openDB.onsuccess = function(event){
+      var db = openDB.result;
+      var trans = db.transaction(["feedbacks"], "readwrite");
+      var store = trans.objectStore("feedbacks");
+      var addFeedback = store.put(feedback);
+      addFeedback.onsuccess = function(event){
+        alert("Feedback added");
+      }
+      addFeedback.onerror = function(event){
+        alert("Error when adding Feedback")
+      }
+      trans.oncomplete = function(){
+        db.close();
+      }
+    };
+  }
+}
 
-	const date = new Date();
-	if(isOnline()){
-	    var commit = {
-	      text: document.getElementById('inp').value
+
+function show(){
+	  if(useLocalStorage){
+	      var feedbackItem = localStorage.getItem('feedbacks');
+	      if (feedbackItem !== null) {
+	          feedbacks = JSON.parse(feedbackItem);
+	        }
+	    if ((typeof feedbacks !== 'undefined') && (feedbacks.length > 0)) {
+	      for(var i = 0; i < feedbacks.length; i++) {
+	        createFeedback(feedbacks[i]);
+	      }
 	    }
-    
-    	list_commit.push(commit);
-
-    	localStorage.setItem("list_commit",JSON.stringify(list_commit));
-
-    	console.log(list_commit);
-  	}if(isOnline()){
-    	console.log("Added on server");
-    	$('#con').prepend(
-    	feedback(document.getElementById('name').value, document.getElementById('inp').value, date.toLocaleDateString(), date.toLocaleTimeString())
-  		);
+	  }
+	  else{
+		    var openDB = indexedDB.open("feedback", 1);
+		    openDB.onupgradeneeded = function() {
+		      var db = openDB.result;
+		      var store = db.createObjectStore("feedbacks", {keyPath: "name"});
+		      store.createIndex("name", "name", {unique: false});
+		      store.createIndex("feedback", "feedback", {unique: false});
+		      store.createIndex("date", "date", {unique: false});
+		    }
+		    openDB.onsuccess = function(event){
+		      var db = openDB.result;
+		      var trans = db.transaction("feedbacks", "readwrite");
+		    var store = trans.objectStore("feedbacks");
+		    store.openCursor().onsuccess = function(event){
+		        var cursor = event.target.result;
+		        if (cursor) {
+		          var tempFeed = new Feedback(cursor.value.name, cursor.value.feedback, cursor.value.date);
+		          createFeedback(tempFeed);
+		          //var request = db.transaction(["feedbacks"], "readwrite").objectStore("feedbacks").delete(cursor.primaryKey);
+		          cursor.continue();
+		      }
+		    }
+		    trans.oncomplete = function(){
+		      db.close();
+		    }
+    	}
   	}
-	
-	
-  	document.getElementById('inp').value = '';
 }
-function addElementLocalStorig(){
-	const date = new Date();
-	if(isOnline()){
-		for(var i = 0; i < JSON.parse(localStorage.getItem("list_commit")).length ;i++){
-			$('#con').prepend(
-		    	feedback(JSON.parse(localStorage.getItem("list_commit"))[i].name,
-		    		JSON.parse(localStorage.getItem("list_commit"))[i].text,
-		    		date.toLocaleDateString(), date.toLocaleTimeString())
-		  	);
-		}
-	}
+
+function addFeedback(){
+  var comment = document.getElementById("inp");
+  var name = document.getElementById("name");
+  var date = new Date();
+  dateString = date.toLocaleDateString()+ "/" + date.toLocaleTimeString();
+  if(name.value == ""){
+    alert("Enter your name");
+    return;
+  }
+  if(comment.value == ""){
+    alert("Enter text");
+    return;
+  }
+  var feedback = new Feedback(name.value, comment.value, dateString);
+  addToStorage(feedback);
+  createFeedback(feedback);
+  name.value = "";
+  comment.value = "";
 }
+
+function createFeedback(feedback){
+  $('#con').prepend(feedbackAdd(feedback.feedback,feedback.name,feedback.date));
+}
+show();
