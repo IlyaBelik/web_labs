@@ -11,6 +11,29 @@ const text = document.getElementById('text');
 const caption = document.getElementById('caption') 
 const photo = document.getElementById('formForFile')
 
+const onSubmitPress = function(e){
+  e.preventDefault();
+
+  if (text.value.length == 0 && caption.value.length == 0) {
+    alert("Error") 
+    return;
+  }
+  if(!isOnline()){
+    var news = {
+      name:caption.value,
+      text:text.value,
+    }
+  
+    list_news.push(news);
+
+    localStorage.setItem("list_news",JSON.stringify(list_news));
+
+    console.log(list_news);
+  }else{
+    console.log("Added on LocalStorage");
+  }
+
+
   alert('News have been successfuly');
   
   text.value=" ";

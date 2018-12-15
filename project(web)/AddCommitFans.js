@@ -19,7 +19,7 @@ function addElement(){
 	}
 
 	const date = new Date();
-	if(!isOnline()){
+	if(isOnline()){
 	    var commit = {
 	      text: document.getElementById('inp').value
 	    }
@@ -32,7 +32,7 @@ function addElement(){
   	}if(isOnline()){
     	console.log("Added on server");
     	$('#con').prepend(
-    	feedback( document.getElementById('inp').value, date.toLocaleDateString(), date.toLocaleTimeString())
+    	feedback(document.getElementById('name').value, document.getElementById('inp').value, date.toLocaleDateString(), date.toLocaleTimeString())
   		);
   	}
 	
