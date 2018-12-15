@@ -26,28 +26,7 @@ function addElement(){
     
     	list_commit.push(commit);
 
-    	localStorage.setItem("list_commit",JSON.stringify(list_commit));
-
-    	console.log(list_commit);
-  	}if(isOnline()){
-    	console.log("Added on server");
-    	$('#con').prepend(
-    	feedback( document.getElementById('inp').value, date.toLocaleDateString(), date.toLocaleTimeString())
-  		);
-  	}
+    
 	
 	
-  	document.getElementById('inp').value = '';
-}
-function addElementLocalStorig(){
-	const date = new Date();
-	if(isOnline()){
-		for(var i = 0; i < JSON.parse(localStorage.getItem("list_commit")).length ;i++){
-			$('#con').prepend(
-		    	feedback(JSON.parse(localStorage.getItem("list_commit"))[i].name,
-		    		JSON.parse(localStorage.getItem("list_commit"))[i].text,
-		    		date.toLocaleDateString(), date.toLocaleTimeString())
-		  	);
-		}
-	}
-}
+  
